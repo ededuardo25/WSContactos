@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo json_encode($response);
     }
     else{
-        $CelularC=$objArray['CelularC']; 
-        $result = mysqli_query($Cn,"DELETE FROM contacto WHERE CelularC='$CelularC'");
+        $id_contacto=$objArray['id_contacto']; 
+        $result = mysqli_query($Cn,"DELETE FROM contacto WHERE id_contacto='$id_contacto'");
         if ($result) {   
             $response["success"] = 200;   // El success=200 es que encontro eñ producto
             $response["message"] = "Alumno Eliminado";

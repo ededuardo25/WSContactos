@@ -20,15 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     else{  //Me va a vuscar los datos que yo le pida 
 
-        $CorreoUsr=$objArray['CorreoUsr'];
+        $CorreoUsuario=$objArray['CorreoUsuario'];
         $Contrasena=$objArray['Contrasena'];
         $Nombre=$objArray['Nombre'];
-        $res = mysqli_query($Cn,"SELECT CorreoUsr,Contrasena,Nombre from usuario WHERE CorreoUsr = '$CorreoUsr'");
+        $res = mysqli_query($Cn,"SELECT CorreoUsuario,Contrasena,Nombre from usuario WHERE CorreoUsuario = '$CorreoUsuario'");
         if (!empty($res)) {
             if (mysqli_num_rows($res) > 0) {
                 $tuplas = mysqli_fetch_array($res);
                 if($Contrasena == $tuplas["Contrasena"]){
-                 $result = mysqli_query($Cn,"SELECT id_contacto,CorreoUser,CorreoC,NombreC,CelularC,TelefonoC,DomicilioC,LongitudC,LatitudC,FechaNac FROM contacto WHERE CorreoUser='$CorreoUsr'");
+                 $result = mysqli_query($Cn,"SELECT id_contacto,CorreoUser,CorreoC,NombreC,CelularC,TelefonoC,DomicilioC,LongitudC,LatitudC,FechaNac FROM contacto WHERE CorreoUser='$CorreoUsuario'");
                  if (mysqli_num_rows($result) > 0) {
                     while ($registro = mysqli_fetch_array($result)) {
                         $contacto = array();
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
                 }
 
-            //($contacto == $result["CorreoUsr"])
+            //($contacto == $result["CorreoUsuario"])
                 else{
                     $contacto = array();
                     $contacto["success"] = 200;  
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     }//(!empty($result))
     else{
-       $result = mysqli_query($Cn,"INSERT INTO usuario (CorreoUsr,Contrasena,Nombre) values ('$CorreoUsr','$Contrasena','$Nombre')");
+       $result = mysqli_query($Cn,"INSERT INTO usuario (CorreoUsuario,Contrasena,Nombre) values ('$CorreoUsuario','$Contrasena','$Nombre')");
        if($result){
         $contacto= array();
         $contacto["success"] = "200";
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 }
 else{
-    $result = mysqli_query($Cn,"INSERT INTO usuario (CorreoUsr,Contrasena,Nombre) values ('$CorreoUsr','$Contrasena','$Nombre')");
+    $result = mysqli_query($Cn,"INSERT INTO usuario (CorreoUsuario,Contrasena,Nombre) values ('$CorreoUsuario','$Nombre','$Contrasena')");
     if($result){
         $contacto= array();
         $contacto["success"]="200";

@@ -21,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo json_encode($response);
     }
     else{
-
+  
+        $id_contacto=$objArray['id_contacto'];
         $CorreoC=$objArray['CorreoC']; 
         $NombreC=$objArray['NombreC'];
         $CelularC=$objArray['CelularC'];
@@ -29,10 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $DomicilioC=$objArray['DomicilioC'];
         $LongitudC=$objArray['LongitudC'];
         $LatitudC=$objArray['LatitudC'];
-        
-
-
-        $result = mysqli_query($Cn,"UPDATE contacto SET CorreoC='$CorreoC',NombreC='$NombreC',CelularC=$CelularC,TelefonoC='$TelefonoC',DomicilioC='$DomicilioC',LongitudC='$LongitudC',LatitudC='$LatitudC' WHERE CelularC='$CelularC'");
+        $result = mysqli_query($Cn,"UPDATE contacto SET CorreoC='$CorreoC',NombreC='$NombreC',CelularC=$CelularC,TelefonoC='$TelefonoC',DomicilioC='$DomicilioC',LongitudC='$LongitudC',LatitudC='$LatitudC' WHERE id_contacto=$id_contacto");
         if ($result) {   
             $producto["success"] = 200;   // El success=200 es que encontro eñ producto
             $producto["message"] = "Producto Actualizado";

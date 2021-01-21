@@ -9,7 +9,7 @@ mysqli_set_charset($Cn,"utf8");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
-    $result = mysqli_query($Cn,"SELECT CorreoUsr,Contrasena,Nombre FROM usuario ORDER BY Nombre");
+    $result = mysqli_query($Cn,"SELECT CorreoUsuario,Contrasena,Nombre FROM usuario ORDER BY Nombre");
     
     if (!empty($result)) {
         if (mysqli_num_rows($result) > 0) {
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $contacto["success"] = 200;  
                 $contacto["message"] = "contactos encontrados";
                 
-                $contacto["CorreoUsr"] = $res["CorreoUsr"];
+                $contacto["CorreoUsuario"] = $res["CorreoUsuario"];
                 $contacto["Contrasena"] = $res["Contrasena"];
                 $contacto["Nombre"] = $res["Nombre"];
 
